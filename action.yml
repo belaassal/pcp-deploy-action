@@ -1,0 +1,31 @@
+name: "pcp-deploy-action"
+author: "Brahim EL AASSAL <belaassal@gmail.com>"
+description: "Automate copying changed files via pcp(secure copy) using this GitHub action."
+inputs:
+  host:
+    description: "SSH host"
+    required: true
+  port:
+    description: "SSH port"
+    required: false
+    default: 22
+  user:
+    description: "user"
+    required: true
+  key:
+    description: "RSA private key"
+    required: true
+  localdir:
+    description: "Local directory"
+    required: false
+    default: "."
+  remotedir:
+    description: "Remote directory"
+    required: false
+    default: "."
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  color: "blue"
+  icon: "upload-cloud"
