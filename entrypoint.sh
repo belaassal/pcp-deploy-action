@@ -16,7 +16,7 @@ then
 else
     for file in ${INPUT_FILES}; 
     do
-        scp -o StrictHostKeyChecking=no -P "${INPUT_PORT}" -v -i TMP_PRIVATE_KEY_FILE -r $file "${INPUT_USER}"@"${INPUT_HOST}":"${INPUT_REMOTEDIR}/$file"
+        rsync -v -e "ssh -o StrictHostKeyChecking=no -P \"${INPUT_PORT}\"  -i TMP_PRIVATE_KEY_FILE " -r $file "${INPUT_USER}"@"${INPUT_HOST}":"${INPUT_REMOTEDIR}/$file"
     done
 fi
 
