@@ -6,7 +6,7 @@ set -eu
 echo -e "${INPUT_KEY}" >TMP_PRIVATE_KEY_FILE
 
 # avoid Permissions too open
-chmod 600 $TMP_PRIVATE_KEY_FILE
+chmod 600 TMP_PRIVATE_KEY_FILE
 
 echo 'deploy start'
 
