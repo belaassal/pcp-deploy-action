@@ -16,6 +16,7 @@ then
 else
     for file in ${INPUT_FILES}; 
     do
+        echo "deploy file : $file"
         scp -o StrictHostKeyChecking=no -P "${INPUT_PORT}" -v -i TMP_PRIVATE_KEY_FILE -r $file "${INPUT_USER}"@"${INPUT_HOST}":"${INPUT_REMOTEDIR}/$file"
     done
 fi
