@@ -9,7 +9,7 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod 777 entrypoint.sh
 
 RUN apk update
-RUN apk add --no-cache openssh rsync
+RUN apk add --no-cache openssh
 
 
 #File to execute when container starts up 
