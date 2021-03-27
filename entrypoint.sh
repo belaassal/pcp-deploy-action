@@ -17,8 +17,10 @@ else
     for file in ${INPUT_FILES}; 
     do
         echo "deploy file : $file"
+        
+        PATH="${INPUT_REMOTEDIR}/$file"
 
-        ssh -o StrictHostKeyChecking=no -p "${INPUT_PORT}" -v -i TMP_PRIVATE_KEY_FILE "${INPUT_USER}"@"${INPUT_HOST}"  "touchDir() { mkdir -p \"$(dirname \"$1\")\" && touch \"$1\" ; } && touchDir \"${INPUT_REMOTEDIR}/$file\" "
+        ssh -o StrictHostKeyChecking=no -p "${INPUT_PORT}" -v -i TMP_PRIVATE_KEY_FILE "${INPUT_USER}"@"${INPUT_HOST}"  "mkdir -p \"$(dirname \"$PATH\")\" && touch \"$PATH\" "
 
         scp -o StrictHostKeyChecking=no -P "${INPUT_PORT}" -v -i TMP_PRIVATE_KEY_FILE -r $file "${INPUT_USER}"@"${INPUT_HOST}":"${INPUT_REMOTEDIR}/$file"
     done
