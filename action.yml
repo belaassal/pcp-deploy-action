@@ -27,6 +27,10 @@ inputs:
     description: "files to deploy"
     required: false
     default: "null"
+  deletes:
+    description: "files to delete"
+    required: false
+    default: "null"
 runs:
   using: "docker"
   image: "Dockerfile"

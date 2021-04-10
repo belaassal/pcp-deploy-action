@@ -22,6 +22,11 @@ else
     done
 fi
 
+for file in ${INPUT_DELETES}; 
+do
+echo "Delete file : $file"
+ssh -o StrictHostKeyChecking=no -p "${INPUT_PORT}" -v -i TMP_PRIVATE_KEY_FILE "${INPUT_USER}"@"${INPUT_HOST}"  "rm \"${INPUT_REMOTEDIR}/$file\" "
+done
 
 echo 'deploy success'
 
