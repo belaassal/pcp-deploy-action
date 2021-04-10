@@ -68,10 +68,13 @@ jobs:
       - name: get changed files
         id: getfile
         run: |
-          echo "::set-output name=files::$( git diff --name-only ${{ github.event.before }} ${{ github.sha }} | xargs )"
-      - name: echo output
+          echo "::set-output name=files::$( git diff --diff-filter=ACMRT --name-only ${{ github.event.before }} ${{ github.sha }} | xargs )"
+
+      - name: get deleted files
+        id: deletefile
         run: |
-          echo ${{ steps.getfile.outputs.files }}
+          echo "::set-output name=files::$( git diff --diff-filter=D --name-only ${{ github.event.before }} ${{ github.sha }} | xargs )"
+
       - name: Deploy
         uses: belaassal/pcp-deploy-action@main
         with:
@@ -80,6 +83,7 @@ jobs:
           user: ${{ secrets.USER }}
           key: ${{ secrets.KEY }}
           files: ${{ steps.getfile.outputs.files }}
+          deletes: ${{ steps.deletefile.outputs.files }}
           remotedir: "/var/www"
 
 ```
